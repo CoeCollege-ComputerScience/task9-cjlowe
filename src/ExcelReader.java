@@ -1,10 +1,7 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ExcelReader{
 
@@ -43,8 +40,19 @@ public class ExcelReader{
         return time.get(stockName).get(currentTime);
     }
 
-    public String[] updateStock(){
-        List<String> tempList = new List<>(3);
+    public String getCurrentTime(){
+        return String.valueOf(currentTime);
+    }
+
+    public ArrayList<String> updateTime(){
+        ArrayList<String> returned = new ArrayList<>();
+        currentTime++;
+        for (String key : time.keySet()) {
+            if (time.get(key).containsKey(String.valueOf(currentTime))){
+                returned.add(key);
+            }
+        }
+        return returned;
     }
 }
 
